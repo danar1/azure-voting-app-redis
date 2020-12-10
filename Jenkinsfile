@@ -1,5 +1,5 @@
 pipeline {
-    agent amazon-linux2
+    agent "amazon-linux2"
 
     stages {
         stage('Verify Branch') {
