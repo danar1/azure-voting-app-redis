@@ -50,18 +50,19 @@ pipeline {
             """)
          }
       }
-     stage('Push container') {
-         steps {
+    stage('Push container') {
+        steps {
             echo "Workspace is $WORKSPACE"
-            dir("$WORKSPACE/azure-vote")
+            dir("$WORKSPACE/azure-vote") {
                 script {
-                docker.withRegistry('https://index.docker.io/v1/', 'DockerHub') {
-                    def image = docker.build('danare/jenkins-course:latest')
-                    image.push()
+                    docker.withRegistry('https://index.docker.io/v1/', 'DockerHub') {
+                        def image = docker.build('danare/jenkins-course:latest')
+                        image.push()
+                    }
                 }
-                }
-         }
-      }
+            }
+        }
     
     }
+}
 }
