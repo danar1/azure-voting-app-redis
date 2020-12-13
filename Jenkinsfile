@@ -23,6 +23,7 @@ pipeline {
          steps {
             sh(script: """
                docker-compose up -d
+               chown ec2-user:ec2-user ./scripts/test_container.sh
                ./scripts/test_container.sh
             """)
          }
